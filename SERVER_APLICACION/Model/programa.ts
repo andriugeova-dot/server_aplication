@@ -1,23 +1,21 @@
 import { conexion } from "./conexion.ts";
 
-interface programaData{
-    idPrograma:number|null;
-    nombrePrograma:string;
+interface programaData {
+  idPrograma: number | null;
+  nombrePrograma: string;
 }
 
-export class Programa{
+export class Programa {
+  public _ObjPrograma: programaData | null;
+  public _idPrograma: number | null;
 
-    public _ObjPrograma:programaData|null;
-    public _idPrograma:number|null;
+  constructor(ObjPrograma: programaData | null = null, idPrograma: number | null = null) {
+    this._ObjPrograma = ObjPrograma;
+    this._idPrograma = idPrograma;
+  }
 
-    constructor(ObjPrograma:programaData|null=null,idPrograma:number|null=null){
-        this._ObjPrograma=ObjPrograma;
-        this._idPrograma=idPrograma;
-    }
-
-    public async SeleccionarProgramas():Promise<programaData[]>{
-        const {rows:programas}=await conexion.execute("SELECT * FROM Programa");
-        return programas as programaData[];
-    }
-
+  public async SeleccionarProgramas(): Promise<programaData[]> {
+    const { rows: programas } = await conexion.execute("SELECT * FROM programa");
+    return programas as programaData[];
+  }
 }
