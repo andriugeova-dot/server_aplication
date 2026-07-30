@@ -22,4 +22,48 @@ export class Usuario {
     const { rows: usuarios } = await conexion.execute("SELECT * FROM usuario");
     return usuarios as usuarioData[];
   }
+
+  public async SeleccionarUsuarioPorId(): Promise<usuarioData | null> {
+    const { rows: usuarios } = await conexion.execute(
+      "SELECT * FROM usuario WHERE idUsuario = ?",
+      [this._idUsuario],
+    );
+    const lista = usuarios as usuarioData[];
+    return lista.length > 0 ? lista[0] : null;
+  }
+
+  public async SeleccionarUsuarioPorCorreo(correo: string): Promise<usuarioData | null> {
+    const { rows: usuarios } = await conexion.execute(
+      "SELECT * FROM usuario WHERE correo = ?",
+      [correo],
+    );
+    const lista = usuarios as usuarioData[];
+    return lista.length > 0 ? lista[0] : null;
+  }
+
+  public async InsertarUsuario(): Promise<number> {
+    const datos = this._ObjUsuario as usuarioData;
+    const resultado = await conexion.execute(
+      "INSERT INTO usuario (nombre, apellido, correo, password, idRol) VALUES (?, ?, ?, ?, ?)",
+      [datos.nombre, datos.apellido, datos.correo, datos.password, datos.idRol],
+    );
+    return resultado.lastInsertId ?? 0;
+  }
+
+  public async ActualizarUsuario(): Promise<number> {
+    const datos = this._ObjUsuario as usuarioData;
+    const resultado = await conexion.execute(
+      "UPDATE usuario SET nombre = ?, apellido = ?, correo = ?, password = ?, idRol = ? WHERE idUsuario = ?",
+      [datos.nombre, datos.apellido, datos.correo, datos.password, datos.idRol, this._idUsuario],
+    );
+    return resultado.affectedRows ?? 0;
+  }
+
+  public async EliminarUsuario(): Promise<number> {
+    const resultado = await conexion.execute(
+      "DELETE FROM usuario WHERE idUsuario = ?",
+      [this._idUsuario],
+    );
+    return resultado.affectedRows ?? 0;
+  }
 }

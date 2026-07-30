@@ -23,4 +23,39 @@ export class Aprendiz {
     const { rows: aprendices } = await conexion.execute("SELECT * FROM aprendiz");
     return aprendices as aprendizData[];
   }
+
+  public async SeleccionarAprendizPorId(): Promise<aprendizData | null> {
+    const { rows: aprendices } = await conexion.execute(
+      "SELECT * FROM aprendiz WHERE idAprendiz = ?",
+      [this._idAprendiz],
+    );
+    const lista = aprendices as aprendizData[];
+    return lista.length > 0 ? lista[0] : null;
+  }
+
+  public async InsertarAprendiz(): Promise<number> {
+    const datos = this._ObjAprendiz as aprendizData;
+    const resultado = await conexion.execute(
+      "INSERT INTO aprendiz (documento, nombre, apellido, correo, telefono, idFicha) VALUES (?, ?, ?, ?, ?, ?)",
+      [datos.documento, datos.nombre, datos.apellido, datos.correo, datos.telefono, datos.idFicha],
+    );
+    return resultado.lastInsertId ?? 0;
+  }
+
+  public async ActualizarAprendiz(): Promise<number> {
+    const datos = this._ObjAprendiz as aprendizData;
+    const resultado = await conexion.execute(
+      "UPDATE aprendiz SET documento = ?, nombre = ?, apellido = ?, correo = ?, telefono = ?, idFicha = ? WHERE idAprendiz = ?",
+      [datos.documento, datos.nombre, datos.apellido, datos.correo, datos.telefono, datos.idFicha, this._idAprendiz],
+    );
+    return resultado.affectedRows ?? 0;
+  }
+
+  public async EliminarAprendiz(): Promise<number> {
+    const resultado = await conexion.execute(
+      "DELETE FROM aprendiz WHERE idAprendiz = ?",
+      [this._idAprendiz],
+    );
+    return resultado.affectedRows ?? 0;
+  }
 }
