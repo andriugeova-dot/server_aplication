@@ -1,21 +1,21 @@
 
 import { Router } from "../Dependencies/dependencies.ts";
 
-const usuarioRouter = new Router
+const asistenciaRouter = new Router
 
-usuarioRouter.get("/asistencia", (ctx) =>{
+asistenciaRouter.get("/asistencia", (ctx) =>{
         
 })
-usuarioRouter.post("/asistencia", (ctx) =>{
+asistenciaRouter.post("/asistencia", (ctx) =>{
 
 })
 
-usuarioRouter.put("/asistencia", (ctx) =>{
+asistenciaRouter.put("/asistencia", (ctx) =>{
     
 })
-usuarioRouter.delete("/asistencia", (ctx) =>{
+asistenciaRouter.delete("/asistencia", (ctx) =>{
     
 })
 
-export {usuarioRouter};
+export {asistenciaRouter};
 
