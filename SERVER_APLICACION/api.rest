@@ -105,7 +105,7 @@ GET http://localhost:8002/asistencia/aprendiz
 {
   "idAprendiz": 1,
   "idHFA": 1,
-  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjcsImNvcnJlbyI6ImFkbWluQGdtYWlsLmNvbSIsImlkUm9sIjozLCJleHAiOjE3ODU0OTMzNTd9.aF6OSc9NPGN_PbOe3H_WXuH_cWSN9a9B_xVTl31Pdh4
+  
 
 }
 
