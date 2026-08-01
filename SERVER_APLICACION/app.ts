@@ -1,4 +1,4 @@
-import { Application, oakCors } from "./Dependencies/dependencies.ts";
+import { Application, oakCors } from "./Dependencies/dependencias.ts";
 import { usuarioRouter } from "./Routes/usuarioRouter.ts";
 import { aprendizRouter } from "./Routes/aprendizRouter.ts";
 import { fichaRouter } from "./Routes/fichaRouter.ts";
@@ -11,6 +11,7 @@ import { asignacionFichaRouter } from "./Routes/asignacionFichaRouter.ts";
 import { asignacionUsuarioRouter } from "./Routes/asigancionUsuarioRouter.ts";
 import { asistenciaRouter } from "./Routes/asistenciaRouter.ts";
 import { loginRouter } from "./Routes/loginRouter.ts";
+import { registroRouter } from "./Routes/registroRouter.ts";
 
 const app = new Application();
 
@@ -20,6 +21,7 @@ app.use(oakCors({
 
 const routes = [
     loginRouter,
+    registroRouter,
     usuarioRouter,
     aprendizRouter,
     fichaRouter,

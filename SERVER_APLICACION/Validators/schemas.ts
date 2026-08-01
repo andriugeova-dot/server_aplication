@@ -1,4 +1,4 @@
-import { z } from "../Dependencies/dependencies.ts";
+import { z } from "../Dependencies/dependencias.ts";
 
 // ---------- Aprendiz ----------
 export const aprendizSchema = z.object({
@@ -25,6 +25,16 @@ export const usuarioUpdateSchema = usuarioSchema.partial();
 export const loginSchema = z.object({
   correo: z.string().email("El correo no es válido"),
   password: z.string().min(1, "La contraseña es obligatoria"),
+});
+
+// ---------- Registro (signup público) ----------
+// No incluye idRol: el registro público nunca debe permitir que el propio
+// usuario elija su rol (por ejemplo, autoasignarse "admin").
+export const registroSchema = z.object({
+  nombre: z.string().min(1, "El nombre es obligatorio"),
+  apellido: z.string().min(1, "El apellido es obligatorio"),
+  correo: z.string().email("El correo no es válido"),
+  password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
 });
 
 // ---------- Ficha ----------

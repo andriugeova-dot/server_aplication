@@ -1,4 +1,4 @@
-import { Router } from "../Dependencies/dependencies.ts";
+import { Router } from "../Dependencies/dependencias.ts";
 import { HFA } from "../Model/hfa.ts";
 import { hfaSchema, hfaUpdateSchema } from "../Validators/schemas.ts";
 

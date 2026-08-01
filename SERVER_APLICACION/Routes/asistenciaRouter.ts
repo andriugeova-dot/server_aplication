@@ -1,4 +1,4 @@
-import { Router } from "../Dependencies/dependencies.ts";
+import { Router } from "../Dependencies/dependencias.ts";
 import { Asistencia } from "../Model/asistencia.ts";
 import { asistenciaSchema, asistenciaUpdateSchema } from "../Validators/schemas.ts";
 

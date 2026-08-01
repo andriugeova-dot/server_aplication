@@ -1,4 +1,4 @@
-import { Router } from "../Dependencies/dependencies.ts";
+import { Router } from "../Dependencies/dependencias.ts";
 import { Asignatura } from "../Model/asignatura.ts";
 import { asignaturaSchema, asignaturaUpdateSchema } from "../Validators/schemas.ts";
 

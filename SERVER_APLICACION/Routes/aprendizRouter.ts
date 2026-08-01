@@ -1,4 +1,4 @@
-import { Router } from "../Dependencies/dependencies.ts";
+import { Router } from "../Dependencies/dependencias.ts";
 import { Aprendiz } from "../Model/aprendiz.ts";
 import { aprendizSchema, aprendizUpdateSchema } from "../Validators/schemas.ts";
 

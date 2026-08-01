@@ -1,4 +1,4 @@
-import { Router } from "../Dependencies/dependencies.ts";
+import { Router } from "../Dependencies/dependencias.ts";
 import { AsignacionFicha } from "../Model/asignacionFicha.ts";
 import { asignacionFichaSchema, asignacionFichaUpdateSchema } from "../Validators/schemas.ts";
 

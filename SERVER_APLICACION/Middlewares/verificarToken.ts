@@ -1,4 +1,4 @@
-import { verify } from "../Dependencies/dependencies.ts";
+import { verify } from "../Dependencies/dependencias.ts";
 
 const encoder = new TextEncoder();
 let claveJWT: CryptoKey | null = null;

@@ -1,4 +1,4 @@
-import { Router, bcrypt } from "../Dependencies/dependencies.ts";
+import { Router, bcrypt } from "../Dependencies/dependencias.ts";
 import { Usuario } from "../Model/usuario.ts";
 import { usuarioSchema, usuarioUpdateSchema } from "../Validators/schemas.ts";
 import { verificarToken, verificarRol } from "../Middlewares/verificarToken.ts";

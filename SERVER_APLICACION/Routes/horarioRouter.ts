@@ -1,4 +1,4 @@
-import { Router } from "../Dependencies/dependencies.ts";
+import { Router } from "../Dependencies/dependencias.ts";
 import { Horario } from "../Model/horario.ts";
 import { horarioSchema, horarioUpdateSchema } from "../Validators/schemas.ts";
 

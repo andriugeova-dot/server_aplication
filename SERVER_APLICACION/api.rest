@@ -1,16 +1,28 @@
+### Registrar una cuenta nueva (público, no requiere token; siempre crea rol "aprendiz")
+POST http://localhost:8002/registro
+Content-Type: application/json
+
+{
+  "nombre": "Juan",
+  "apellido": "Perez",
+  "correo": "juan.perez@example.com",
+  "password": "123456"
+}
+
+###
 ### Iniciar sesión (guarda el "token" de la respuesta para usarlo en las rutas protegidas)
 POST http://localhost:8002/login
 Content-Type: application/json
 
 {
   "correo": "admin@gmail.com",
-  "password": "1"y
+  "password": "1"
 }
 
 ###
 ### Listar usuarios (ruta protegida: requiere token de un usuario con rol admin)
 GET http://localhost:8002/usuario
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjcsImNvcnJlbyI6ImFkbWluQGdtYWlsLmNvbSIsImlkUm9sIjozLCJleHAiOjE3ODU0OTMzNTd9.aF6OSc9NPGN_PbOe3H_WXuH_cWSN9a9B_xVTl31Pdh4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjcsImNvcnJlbyI6ImFkbWluQGdtYWlsLmNvbSIsImlkUm9sIjozLCJleHAiOjE3ODU1NzYxMTF9.qiFOvdh1QK_NHrZSlrP7dZG4iI3jGpFvs8mptXANCzg
 
 ###
 ### Listar aprendices

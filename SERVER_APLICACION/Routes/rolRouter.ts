@@ -1,4 +1,4 @@
-import { Router } from "../Dependencies/dependencies.ts";
+import { Router } from "../Dependencies/dependencias.ts";
 import { Rol } from "../Model/rol.ts";
 import { rolSchema, rolUpdateSchema } from "../Validators/schemas.ts";
 import { verificarToken, verificarRol } from "../Middlewares/verificarToken.ts";

@@ -1,4 +1,4 @@
-import { bcrypt, create, getNumericDate } from "../Dependencies/dependencies.ts";
+import { bcrypt, create, getNumericDate } from "../Dependencies/dependencias.ts";
 import { Usuario } from "../Model/usuario.ts";
 import { loginSchema } from "../Validators/schemas.ts";
 import { obtenerClaveJWT } from "../Middlewares/verificarToken.ts";
