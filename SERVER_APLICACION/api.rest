@@ -43,9 +43,10 @@ Content-Type: application/json
   "telefono": "3001234567",
   "idFicha": 1
 }
-
+###
+GET http://localhost:8002/aprendiz/4
 ### Actualizar un aprendiz
-PUT http://localhost:8002/aprendiz/1
+PUT http://localhost:8002/aprendiz/3
 Content-Type: application/json
 
 {
