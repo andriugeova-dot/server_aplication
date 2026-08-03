@@ -1,21 +1,12 @@
+import { Router } from "../Dependencies/dependencias.ts";
+import { GetAprendiz, GetAprendizID, PostAprendiz, PutAprendiz, DelateAprendiz } from "../Controller/aprendizController.ts";
 
-import { Router } from "../Dependencies/dependencies.ts";
+const aprendizRouter = new Router();
 
-const aprendizRouter = new Router
+aprendizRouter.get("/aprendiz", GetAprendiz);
+aprendizRouter.get("/aprendiz/:id", GetAprendizID);
+aprendizRouter.post("/aprendiz", PostAprendiz);
+aprendizRouter.put("/aprendiz/:id", PutAprendiz);
+aprendizRouter.delete("/aprendiz/:id", DelateAprendiz);
 
-aprendizRouter.get("/aprendiz", (ctx) =>{
-        
-})
-aprendizRouter.post("/aprendiz", (ctx) =>{
-
-})
-
-aprendizRouter.put("/aprendiz", (ctx) =>{
-    
-})
-aprendizRouter.delete("/aprendiz", (ctx) =>{
-    
-})
-
-export {aprendizRouter};
-
+export { aprendizRouter };

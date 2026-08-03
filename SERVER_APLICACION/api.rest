@@ -1,1 +1,126 @@
-GET http://localhost:8002/users
+### Registrar una cuenta nueva (público, no requiere token; siempre crea rol "aprendiz")
+POST http://localhost:8002/registro
+Content-Type: application/json
+
+{
+  "nombre": "Juan",
+  "apellido": "Perez",
+  "correo": "juan.perez@example.com",
+  "password": "123456"
+}
+
+###
+### Iniciar sesión (guarda el "token" de la respuesta para usarlo en las rutas protegidas)
+POST http://localhost:8002/login
+Content-Type: application/json
+
+{
+  "correo": "admin@gmail.com",
+  "password": "1"
+}
+
+###
+### Listar usuarios (ruta protegida: requiere token de un usuario con rol admin)
+GET http://localhost:8002/usuario
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjcsImNvcnJlbyI6ImFkbWluQGdtYWlsLmNvbSIsImlkUm9sIjozLCJleHAiOjE3ODU1NzYxMTF9.qiFOvdh1QK_NHrZSlrP7dZG4iI3jGpFvs8mptXANCzg
+
+###
+### Listar aprendices
+GET http://localhost:8002/aprendiz
+
+### Obtener un aprendiz por id
+GET http://localhost:8002/aprendiz/1
+
+### Crear un aprendiz
+POST http://localhost:8002/aprendiz
+Content-Type: application/json
+
+{
+  "documento": "1094123456",
+  "nombre": "Juan",
+  "apellido": "Perez",
+  "correo": "juan.perez@example.com",
+  "telefono": "3001234567",
+  "idFicha": 1
+}
+###
+GET http://localhost:8002/aprendiz/4
+### Actualizar un aprendiz
+PUT http://localhost:8002/aprendiz/3
+Content-Type: application/json
+
+{
+  "telefono": "3009999999"
+}
+
+### Eliminar un aprendiz
+DELETE http://localhost:8002/aprendiz/1
+
+###
+### Listar usuarios
+GET http://localhost:8002/usuario
+
+### Crear un usuario
+POST http://localhost:8002/usuario
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "apellido": "Gomez",
+  "correo": "ana.gomez@example.com",
+  "password": "clave123",
+  "idRol": 2
+}
+
+###
+### Listar fichas
+GET http://localhost:8002/ficha
+
+### Listar programas
+GET http://localhost:8002/programa
+
+### Listar roles
+GET http://localhost:8002/rol
+
+### Listar asignaturas
+GET http://localhost:8002/asignatura
+
+### Listar horarios
+GET http://localhost:8002/horario
+
+### Listar hfa (Horario-Ficha-Asignatura)
+GET http://localhost:8002/hfa
+
+### Listar asignaciones de ficha
+GET http://localhost:8002/asignacionFicha
+
+### Listar asignaciones de usuario
+GET http://localhost:8002/asignacionUsuario
+
+###
+### Listar asistencias
+GET http://localhost:8002/asistencia
+
+### Registrar una asistencia
+POST http://localhost:8002/asistencia
+Content-Type: application/json
+
+{
+  "idAprendiz": 1,
+  "idHFA": 1,
+  "fecha": "2026-07-30",
+  "horaEntrada": "07:00:00",
+  "estado": "Presente"
+}
+
+### Consultar asistencias de un aprendiz
+GET http://localhost:8002/asistencia/aprendiz
+{
+  "idAprendiz": 1,
+  "idHFA": 1,
+  
+
+}
+
+###
+

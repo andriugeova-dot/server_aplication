@@ -1,21 +1,18 @@
+import { Router } from "../Dependencies/dependencias.ts";
+import {
+  GetAsignacionFicha,
+  GetAsignacionFichaID,
+  PostAsignacionFicha,
+  PutAsignacionFicha,
+  DelateAsignacionFicha,
+} from "../Controller/asignacionFichaController.ts";
 
-import { Router } from "../Dependencies/dependencies.ts";
+const asignacionFichaRouter = new Router();
 
-const asignacionFichaRouter = new Router
+asignacionFichaRouter.get("/asignacionFicha", GetAsignacionFicha);
+asignacionFichaRouter.get("/asignacionFicha/:id", GetAsignacionFichaID);
+asignacionFichaRouter.post("/asignacionFicha", PostAsignacionFicha);
+asignacionFichaRouter.put("/asignacionFicha/:id", PutAsignacionFicha);
+asignacionFichaRouter.delete("/asignacionFicha/:id", DelateAsignacionFicha);
 
-asignacionFichaRouter.get("/asignacionFicha", (ctx) =>{
-        
-})
-asignacionFichaRouter.post("/asignacionFicha", (ctx) =>{
-
-})
-
-asignacionFichaRouter.put("/asignacionFicha", (ctx) =>{
-    
-})
-asignacionFichaRouter.delete("/asignacionFicha", (ctx) =>{
-    
-})
-
-export {asignacionFichaRouter};
-
+export { asignacionFichaRouter };

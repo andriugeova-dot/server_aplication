@@ -1,21 +1,30 @@
+import { Router } from "../Dependencies/dependencias.ts";
+import { verificarToken, verificarRol } from "../Middlewares/verificarToken.ts";
+import {
+  GetUsuario,
+  GetUsuarioID,
+  PostUsuario,
+  PutUsuario,
+  DelateUsuario,
+} from "../Controller/usuarioController.ts";
 
-import { Router } from "../Dependencies/dependencies.ts";
+const usuarioRouter = new Router();
 
-const usuarioRouter = new Router
+const ID_ROL_ADMIN = 3;
 
-usuarioRouter.get("/usuario", (ctx) =>{
-        
-})
-usuarioRouter.post("/usuario", (ctx) =>{
+// Solo un administrador puede listar todos los usuarios
+usuarioRouter.get("/usuario", verificarToken, verificarRol(ID_ROL_ADMIN), GetUsuario);
 
-})
+// Cualquier usuario autenticado puede consultar un usuario por id
+usuarioRouter.get("/usuario/:id", verificarToken, GetUsuarioID);
 
-usuarioRouter.put("/usuario", (ctx) =>{
-    
-})
-usuarioRouter.delete("/usuario", (ctx) =>{
-    
-})
+// Solo un administrador puede crear usuarios
+usuarioRouter.post("/usuario", verificarToken, verificarRol(ID_ROL_ADMIN), PostUsuario);
 
-export {usuarioRouter};
+// Solo un administrador puede actualizar usuarios
+usuarioRouter.put("/usuario/:id", verificarToken, verificarRol(ID_ROL_ADMIN), PutUsuario);
 
+// Solo un administrador puede eliminar usuarios
+usuarioRouter.delete("/usuario/:id", verificarToken, verificarRol(ID_ROL_ADMIN), DelateUsuario);
+
+export { usuarioRouter };

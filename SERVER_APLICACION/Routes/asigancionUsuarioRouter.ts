@@ -1,21 +1,18 @@
+import { Router } from "../Dependencies/dependencias.ts";
+import {
+  GetAsignacionUsuario,
+  GetAsignacionUsuarioID,
+  PostAsignacionUsuario,
+  PutAsignacionUsuario,
+  DelateAsignacionUsuario,
+} from "../Controller/asignacionUsuarioController.ts";
 
-import { Router } from "../Dependencies/dependencies.ts";
+const asignacionUsuarioRouter = new Router();
 
-const asignacionUsuarioRouter = new Router
+asignacionUsuarioRouter.get("/asignacionUsuario", GetAsignacionUsuario);
+asignacionUsuarioRouter.get("/asignacionUsuario/:id", GetAsignacionUsuarioID);
+asignacionUsuarioRouter.post("/asignacionUsuario", PostAsignacionUsuario);
+asignacionUsuarioRouter.put("/asignacionUsuario/:id", PutAsignacionUsuario);
+asignacionUsuarioRouter.delete("/asignacionUsuario/:id", DelateAsignacionUsuario);
 
-asignacionUsuarioRouter.get("/asignacionUsuario", (ctx) =>{
-        
-})
-asignacionUsuarioRouter.post("/asignacionUsuario", (ctx) =>{
-
-})
-
-asignacionUsuarioRouter.put("/asignacionUsuario", (ctx) =>{
-    
-})
-asignacionUsuarioRouter.delete("/asignacionUsuario", (ctx) =>{
-    
-})
-
-export {asignacionUsuarioRouter};
-
+export { asignacionUsuarioRouter };

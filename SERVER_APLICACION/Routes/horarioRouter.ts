@@ -1,21 +1,18 @@
+import { Router } from "../Dependencies/dependencias.ts";
+import {
+  GetHorario,
+  GetHorarioID,
+  PostHorario,
+  PutHorario,
+  DelateHorario,
+} from "../Controller/horarioController.ts";
 
-import { Router } from "../Dependencies/dependencies.ts";
+const horarioRouter = new Router();
 
-const horarioRouter = new Router
+horarioRouter.get("/horario", GetHorario);
+horarioRouter.get("/horario/:id", GetHorarioID);
+horarioRouter.post("/horario", PostHorario);
+horarioRouter.put("/horario/:id", PutHorario);
+horarioRouter.delete("/horario/:id", DelateHorario);
 
-horarioRouter.get("/horario", (ctx) =>{
-        
-})
-horarioRouter.post("/horario", (ctx) =>{
-
-})
-
-horarioRouter.put("/horario", (ctx) =>{
-    
-})
-horarioRouter.delete("/horario", (ctx) =>{
-    
-})
-
-export {horarioRouter};
-
+export { horarioRouter };

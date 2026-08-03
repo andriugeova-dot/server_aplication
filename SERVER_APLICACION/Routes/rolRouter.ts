@@ -1,21 +1,20 @@
+import { Router } from "../Dependencies/dependencias.ts";
+import { verificarToken, verificarRol } from "../Middlewares/verificarToken.ts";
+import {
+  GetRol,
+  GetRolID,
+  PostRol,
+  PutRol,
+  DelateRol,
+} from "../Controller/rolController.ts";
 
-import { Router } from "../Dependencies/dependencies.ts";
+const rolRouter = new Router();
+const ID_ROL_ADMIN = 3;
 
-const rolRouter = new Router
+rolRouter.get("/rol", GetRol);
+rolRouter.get("/rol/:id", GetRolID);
+rolRouter.post("/rol", verificarToken, verificarRol(ID_ROL_ADMIN), PostRol);
+rolRouter.put("/rol/:id", verificarToken, verificarRol(ID_ROL_ADMIN), PutRol);
+rolRouter.delete("/rol/:id", verificarToken, verificarRol(ID_ROL_ADMIN), DelateRol);
 
-rolRouter.get("/rol", (ctx) =>{
-        
-})
-rolRouter.post("/rol", (ctx) =>{
-
-})
-
-rolRouter.put("/rol", (ctx) =>{
-    
-})
-rolRouter.delete("/rol", (ctx) =>{
-    
-})
-
-export {rolRouter};
-
+export { rolRouter };

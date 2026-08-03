@@ -1,22 +1,18 @@
+import { Router } from "../Dependencies/dependencias.ts";
+import {
+  GetAsignatura,
+  GetAsignaturaID,
+  PostAsignatura,
+  PutAsignatura,
+  DelateAsignatura,
+} from "../Controller/asignaturaController.ts";
 
-import { Router } from "../Dependencies/dependencies.ts";
+const asignaturaRouter = new Router();
 
-const asignaturaRouter = new Router
+asignaturaRouter.get("/asignatura", GetAsignatura);
+asignaturaRouter.get("/asignatura/:id", GetAsignaturaID);
+asignaturaRouter.post("/asignatura", PostAsignatura);
+asignaturaRouter.put("/asignatura/:id", PutAsignatura);
+asignaturaRouter.delete("/asignatura/:id", DelateAsignatura);
 
-asignaturaRouter.get("/asignatura", (ctx) =>{
-        
-})
-
-asignaturaRouter.post("/asignatura", (ctx) =>{
-
-})
-
-asignaturaRouter.put("/asignatura", (ctx) =>{
-    
-})
-asignaturaRouter.delete("/asignatura", (ctx) =>{
-    
-})
-
-export {asignaturaRouter};
-
+export { asignaturaRouter };
