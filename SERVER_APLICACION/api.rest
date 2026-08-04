@@ -8,22 +8,20 @@ Content-Type: application/json
   "correo": "juan.perez@example.com",
   "password": "123456"
 }
-
+y
 ###
 ### Iniciar sesión (guarda el "token" de la respuesta para usarlo en las rutas protegidas)
 POST http://localhost:8002/login
 Content-Type: application/json
 
 {
-  "correo": "admin@gmail.com",
-  "password": "1"
+  "correo": "admin1@gmail.com",
+  "password": "$2b$10$LQm2s9v5K0mA2Q3j9fP8QeXvQjJ1M8P6Tg7Lh3Yp4bWc9Jk2rNm1G"  
 }
-
 ###
 ### Listar usuarios (ruta protegida: requiere token de un usuario con rol admin)
 GET http://localhost:8002/usuario
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjcsImNvcnJlbyI6ImFkbWluQGdtYWlsLmNvbSIsImlkUm9sIjozLCJleHAiOjE3ODU1NzYxMTF9.qiFOvdh1QK_NHrZSlrP7dZG4iI3jGpFvs8mptXANCzg
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjcsImNvcnJlbyI6ImFkbWluQGdtYWlsLmNvbSIsImlkUm9sIjozLCJleHAiOjE3ODU4MzQ0MjN9.VgEa8PZW-pqqV79ET1sMiU9yjrxh7QWyq0vyHcz1A1k
 ###
 ### Listar aprendices
 GET http://localhost:8002/aprendiz
@@ -127,7 +125,7 @@ GET http://localhost:8002/asistencia/aprendiz
 ### 2. Crear usuario instructor (pega el token que te devolvió el login)
 POST http://localhost:8002/usuario
 Content-Type: application/json
-Authorization: Bearer PEGA_AQUI_EL_TOKEN_DEL_LOGIN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjcsImNvcnJlbyI6ImFkbWluQGdtYWlsLmNvbSIsImlkUm9sIjozLCJleHAiOjE3ODU4MzQ0MjN9.VgEa8PZW-pqqV79ET1sMiU9yjrxh7QWyq0vyHcz1A1k
 
 {
   "nombre": "Ana",
