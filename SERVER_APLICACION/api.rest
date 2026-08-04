@@ -127,7 +127,7 @@ GET http://localhost:8002/asistencia/aprendiz
 ### 2. Crear usuario instructor (pega el token que te devolvió el login)
 POST http://localhost:8002/usuario
 Content-Type: application/json
-Authorization: Bearer PEGA_AQUI_EL_TOKEN_DEL_LOGIN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjQsImNvcnJlbyI6ImFkbWluQGdtYWlsLmNvbSIsImlkUm9sIjozLCJleHAiOjE3ODU4OTUzNTJ9.9ZszAz_hQ1AlUWxXwEeGmNXKxcyxIMntRp8PhJuJfpI
 
 {
   "nombre": "Ana",
