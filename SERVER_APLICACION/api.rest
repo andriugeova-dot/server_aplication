@@ -29,11 +29,17 @@ GET http://localhost:8002/aprendiz
 ### Obtener un aprendiz por id
 GET http://localhost:8002/aprendiz/1
 
-### Crear un aprendiz
+### Listar usuarios con rol aprendiz (idRol=1) sin ficha creada todavía
+### -> se usa para llenar el <select> "Usuario" al crear un aprendiz
+GET http://localhost:8002/usuario/rol/1
+
+### Crear un aprendiz (idUsuario debe ser un usuario existente con idRol=1
+### que todavía no tenga otra ficha de aprendiz vinculada)
 POST http://localhost:8002/aprendiz
 Content-Type: application/json
 
 {
+  "idUsuario": 1,
   "documento": "1094123456",
   "nombre": "Juan",
   "apellido": "Perez",

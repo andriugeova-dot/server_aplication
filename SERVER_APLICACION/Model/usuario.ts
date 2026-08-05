@@ -32,6 +32,18 @@ export class Usuario {
     return lista.length > 0 ? lista[0] : null;
   }
 
+  /**
+   * Usada para llenar el <select> "Usuario" al crear un aprendiz en el
+   * panel admin: solo debe listar usuarios con idRol = 1 (aprendiz).
+   */
+  public async SeleccionarUsuariosPorRol(idRol: number): Promise<usuarioData[]> {
+  const { rows: usuarios } = await conexion.execute(
+    "SELECT * FROM usuario WHERE idRol = ?",
+    [idRol],
+  );
+  return usuarios as usuarioData[];
+  }
+
   public async SeleccionarUsuarioPorCorreo(correo: string): Promise<usuarioData | null> {
     const { rows: usuarios } = await conexion.execute(
       "SELECT * FROM usuario WHERE correo = ?",

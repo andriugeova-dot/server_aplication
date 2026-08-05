@@ -1,6 +1,6 @@
 import { Router } from "../Dependencies/dependencias.ts";
 import { verificarToken, verificarRol } from "../Middlewares/verificarToken.ts";
-import { GetHFA, GetHFAID, GetHFAPorFicha, PostHFA, PutHFA, DelateHFA } from "../Controller/hfaController.ts";
+import { GetHFA, GetHFAID, GetHFAPorFicha, PostHFA, PutHFA, DelateHFA } from "../controller/hfaController.ts";
 
 const hfaRouter = new Router();
 const ID_ROL_ADMIN = 3;

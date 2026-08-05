@@ -1,6 +1,9 @@
 import { Context } from "../Dependencies/dependencias.ts";
 import { Aprendiz } from "../Model/aprendiz.ts";
+import { Usuario } from "../Model/usuario.ts";
 import { aprendizSchema, aprendizUpdateSchema } from "../Validators/schemas.ts";
+
+const ID_ROL_APRENDIZ = 1;
 
 export const GetAprendiz = async (ctx: Context) => {
   try {
@@ -75,6 +78,32 @@ export const PostAprendiz = async (ctx: any) => {
   try {
     const body = await ctx.request.body.json();
     const datos = aprendizSchema.parse(body);
+
+    // El usuario debe existir y tener rol "aprendiz" (idRol = 1); si no,
+    // estaríamos creando una ficha de aprendiz para un admin/instructor.
+    const usuarioModel = new Usuario(null, datos.idUsuario);
+    const usuarioVinculado = await usuarioModel.SeleccionarUsuarioPorId();
+    if (!usuarioVinculado) {
+      ctx.response.status = 404;
+      ctx.response.body = { mensaje: "El usuario indicado no existe" };
+      return;
+    }
+    if (usuarioVinculado.idRol !== ID_ROL_APRENDIZ) {
+      ctx.response.status = 400;
+      ctx.response.body = { mensaje: "El usuario indicado no tiene rol de aprendiz" };
+      return;
+    }
+
+    // Un usuario no puede tener dos fichas de aprendiz (la BD también lo
+    // impide con una UNIQUE KEY; esto solo da un mensaje más claro).
+    const aprendizModel = new Aprendiz();
+    const yaExiste = await aprendizModel.SeleccionarAprendizPorIdUsuario(datos.idUsuario);
+    if (yaExiste) {
+      ctx.response.status = 409;
+      ctx.response.body = { mensaje: "Ese usuario ya tiene una ficha de aprendiz asociada" };
+      return;
+    }
+
     const aprendiz = new Aprendiz({ idAprendiz: null, ...datos });
     const idAprendiz = await aprendiz.InsertarAprendiz();
     ctx.response.status = 201;

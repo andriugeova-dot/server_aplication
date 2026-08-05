@@ -1,6 +1,6 @@
 import { Router } from "../Dependencies/dependencias.ts";
 import { verificarToken, verificarRol } from "../Middlewares/verificarToken.ts";
-import { GetHorario, GetHorarioID, PostHorario, PutHorario, DelateHorario } from "../Controller/horarioController.ts";
+import { GetHorario, GetHorarioID, PostHorario, PutHorario, DelateHorario } from "../controller/horarioController.ts";
 
 const horarioRouter = new Router();
 const ID_ROL_ADMIN = 3;

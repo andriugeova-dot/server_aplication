@@ -6,7 +6,7 @@ import {
   PostRol,
   PutRol,
   DelateRol,
-} from "../Controller/rolController.ts";
+} from "../controller/rolController.ts";
 
 const rolRouter = new Router();
 const ID_ROL_ADMIN = 3;

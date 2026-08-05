@@ -43,6 +43,20 @@ export const GetUsuarioID = async (ctx: any) => {
 };
 
 // deno-lint-ignore no-explicit-any
+export const GetUsuarioPorRol = async (ctx: any) => {
+  try {
+    const idRol = Number(ctx.params.idRol);
+    const usuario = new Usuario();
+    const usuarios = await usuario.SeleccionarUsuariosPorRol(idRol);
+    ctx.response.status = 200;
+    ctx.response.body = usuarios.map(ocultarPassword);
+  } catch (error) {
+    ctx.response.status = 500;
+    ctx.response.body = { mensaje: "Error al obtener los usuarios por rol", error: String(error) };
+  }
+};
+
+// deno-lint-ignore no-explicit-any
 export const PostUsuario = async (ctx: any) => {
   try {
     const body = await ctx.request.body.json();

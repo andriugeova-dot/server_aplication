@@ -2,6 +2,7 @@ import { z } from "../Dependencies/dependencias.ts";
 
 // ---------- Aprendiz ----------
 export const aprendizSchema = z.object({
+  idUsuario: z.number().int().positive("idUsuario debe ser un entero positivo"),
   documento: z.string().min(1, "El documento es obligatorio"),
   nombre: z.string().min(1, "El nombre es obligatorio"),
   apellido: z.string().min(1, "El apellido es obligatorio"),

@@ -2,6 +2,7 @@ import { conexion } from "./conexion.ts";
 
 interface aprendizData {
   idAprendiz: number | null;
+  idUsuario: number;
   documento: string;
   nombre: string;
   apellido: string;
@@ -30,6 +31,7 @@ export class Aprendiz {
   const { rows: aprendices } = await conexion.execute(
     `SELECT 
        a.idAprendiz,
+       a.idUsuario,
        a.nombre,
        a.apellido,
        a.documento,
@@ -52,6 +54,7 @@ export class Aprendiz {
     const { rows: aprendices } = await conexion.execute(
       `SELECT
          a.idAprendiz,
+         a.idUsuario,
          a.nombre,
          a.apellido,
          a.documento,
@@ -70,6 +73,22 @@ export class Aprendiz {
     return lista.length > 0 ? lista[0] : null;
   }
 
+  /**
+   * Busca el aprendiz vinculado a un usuario concreto. Se usa al crear un
+   * aprendiz nuevo, para evitar que un mismo usuario (idRol=1) termine con
+   * dos fichas de aprendiz distintas (la UNIQUE KEY en la BD ya lo impide,
+   * pero así devolvemos un mensaje 409 claro en vez de un error 500 crudo
+   * de MySQL).
+   */
+  public async SeleccionarAprendizPorIdUsuario(idUsuario: number): Promise<aprendizData | null> {
+    const { rows: aprendices } = await conexion.execute(
+      "SELECT * FROM aprendiz WHERE idUsuario = ?",
+      [idUsuario],
+    );
+    const lista = aprendices as aprendizData[];
+    return lista.length > 0 ? lista[0] : null;
+  }
+
   public async Seleccionarporficha(): Promise<aprendizData[]> {
   const { rows: aprendices } = await conexion.execute(
     "SELECT * FROM aprendiz WHERE idFicha = ?",
@@ -81,8 +100,8 @@ export class Aprendiz {
   public async InsertarAprendiz(): Promise<number> {
     const datos = this._ObjAprendiz as aprendizData;
     const resultado = await conexion.execute(
-      "INSERT INTO aprendiz (documento, nombre, apellido, correo, telefono, idFicha) VALUES (?, ?, ?, ?, ?, ?)",
-      [datos.documento, datos.nombre, datos.apellido, datos.correo, datos.telefono, datos.idFicha],
+      "INSERT INTO aprendiz (idUsuario, documento, nombre, apellido, correo, telefono, idFicha) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [datos.idUsuario, datos.documento, datos.nombre, datos.apellido, datos.correo, datos.telefono, datos.idFicha],
     );
     return resultado.lastInsertId ?? 0;
   }
