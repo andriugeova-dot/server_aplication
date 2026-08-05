@@ -54,4 +54,27 @@ export class AsignacionFicha {
     );
     return resultado.affectedRows ?? 0;
   }
+  
+    public async SeleccionarFichasInstructor(idUsuario: number) {
+    const { rows } = await conexion.execute(
+      `SELECT
+          f.idFicha,
+          f.numeroFicha,
+          f.jornada,
+          p.nombrePrograma,
+          COUNT(a.idAprendiz) AS totalAprendices
+       FROM asignacionficha af
+       INNER JOIN ficha f
+          ON af.idFicha = f.idFicha
+       INNER JOIN programa p
+          ON f.idPrograma = p.idPrograma
+       LEFT JOIN aprendiz a
+          ON a.idFicha = f.idFicha
+       WHERE af.idUsuario = ?
+       GROUP BY f.idFicha, f.numeroFicha, f.jornada, p.nombrePrograma`,
+      [idUsuario],
+    );
+
+    return rows;
+  }
 }

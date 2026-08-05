@@ -14,6 +14,19 @@ export const GetHFA = async (ctx: Context) => {
 };
 
 // deno-lint-ignore no-explicit-any
+export const GetHFAPorFicha = async (ctx: any) => {
+  try {
+    const idFicha = Number(ctx.params.idFicha);
+    const hfa = new HFA();
+    ctx.response.status = 200;
+    ctx.response.body = await hfa.SeleccionarHFAPorFicha(idFicha);
+  } catch (error) {
+    ctx.response.status = 500;
+    ctx.response.body = { mensaje: "Error al obtener las asignaturas/horario de la ficha", error: String(error) };
+  }
+};
+
+// deno-lint-ignore no-explicit-any
 export const GetHFAID = async (ctx: any) => {
   try {
     const id = Number(ctx.params.id);

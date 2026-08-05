@@ -66,4 +66,5 @@ export class Usuario {
     );
     return resultado.affectedRows ?? 0;
   }
+
 }

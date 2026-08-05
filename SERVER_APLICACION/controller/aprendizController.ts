@@ -33,6 +33,44 @@ export const GetAprendizID = async (ctx: any) => {
 };
 
 // deno-lint-ignore no-explicit-any
+export const GetAprendizMiPerfil = async (ctx: any) => {
+  try {
+    const correo = ctx.state.usuario?.correo;
+    if (!correo) {
+      ctx.response.status = 401;
+      ctx.response.body = { mensaje: "Token inválido" };
+      return;
+    }
+    const aprendiz = new Aprendiz();
+    const resultado = await aprendiz.SeleccionarAprendizPorCorreo(correo);
+    if (!resultado) {
+      ctx.response.status = 404;
+      ctx.response.body = { mensaje: "Todavía no tienes un perfil de aprendiz asociado. Contacta a un administrador." };
+      return;
+    }
+    ctx.response.status = 200;
+    ctx.response.body = resultado;
+  } catch (error) {
+    ctx.response.status = 500;
+    ctx.response.body = { mensaje: "Error al obtener tu perfil de aprendiz", error: String(error) };
+  }
+};
+
+// deno-lint-ignore no-explicit-any
+export const GetAprendizPorFicha = async (ctx: any) => {
+  try {
+    const idFicha = Number(ctx.params.idFicha);
+    const aprendiz = new Aprendiz(null, idFicha);
+    const resultado = await aprendiz.Seleccionarporficha();
+    ctx.response.status = 200;
+    ctx.response.body = resultado;
+  } catch (error) {
+    ctx.response.status = 500;
+    ctx.response.body = { mensaje: "Error al obtener los aprendices de la ficha", error: String(error) };
+  }
+};
+
+// deno-lint-ignore no-explicit-any
 export const PostAprendiz = async (ctx: any) => {
   try {
     const body = await ctx.request.body.json();

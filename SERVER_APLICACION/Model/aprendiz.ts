@@ -48,6 +48,28 @@ export class Aprendiz {
   return lista.length > 0 ? lista[0] : null;
 }
 
+  public async SeleccionarAprendizPorCorreo(correo: string): Promise<aprendizData | null> {
+    const { rows: aprendices } = await conexion.execute(
+      `SELECT
+         a.idAprendiz,
+         a.nombre,
+         a.apellido,
+         a.documento,
+         a.correo,
+         a.telefono,
+         a.idFicha,
+         f.numeroFicha,
+         p.nombrePrograma AS programa
+       FROM aprendiz a
+       LEFT JOIN ficha f ON a.idFicha = f.idFicha
+       LEFT JOIN programa p ON f.idPrograma = p.idPrograma
+       WHERE a.correo = ?`,
+      [correo],
+    );
+    const lista = aprendices as aprendizData[];
+    return lista.length > 0 ? lista[0] : null;
+  }
+
   public async Seleccionarporficha(): Promise<aprendizData[]> {
   const { rows: aprendices } = await conexion.execute(
     "SELECT * FROM aprendiz WHERE idFicha = ?",
@@ -64,6 +86,7 @@ export class Aprendiz {
     );
     return resultado.lastInsertId ?? 0;
   }
+  
 
   public async ActualizarAprendiz(): Promise<number> {
     const datos = this._ObjAprendiz as aprendizData;

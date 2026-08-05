@@ -14,6 +14,32 @@ export const GetAsignacionFicha = async (ctx: Context) => {
 };
 
 // deno-lint-ignore no-explicit-any
+export const GetFichasInstructor = async (ctx: any) => {
+  try {
+
+    const idUsuario = Number(ctx.params.id);
+
+    const asignacionFicha = new AsignacionFicha();
+
+    const resultado = await asignacionFicha.SeleccionarFichasInstructor(idUsuario);
+
+    ctx.response.status = 200;
+
+    ctx.response.body = resultado;
+
+  } catch (error) {
+
+    ctx.response.status = 500;
+
+    ctx.response.body = {
+      mensaje: "Error al obtener las fichas del instructor",
+      error: String(error),
+    };
+
+  }
+};
+
+// deno-lint-ignore no-explicit-any
 export const GetAsignacionFichaID = async (ctx: any) => {
   try {
     const id = Number(ctx.params.id);

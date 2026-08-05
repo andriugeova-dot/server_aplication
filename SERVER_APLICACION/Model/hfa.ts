@@ -16,6 +16,27 @@ export class HFA {
     this._idHFA = idHFA;
   }
 
+  public async SeleccionarHFAPorFicha(idFicha: number) {
+    const { rows } = await conexion.execute(
+      `SELECT
+          h.idHFA,
+          h.idFicha,
+          asg.idAsignatura,
+          asg.nombreAsignatura,
+          hor.idHorario,
+          hor.diaSemana,
+          hor.horaInicio,
+          hor.horaFin
+       FROM hfa h
+       INNER JOIN asignatura asg ON h.idAsignatura = asg.idAsignatura
+       INNER JOIN horario hor ON h.idHorario = hor.idHorario
+       WHERE h.idFicha = ?
+       ORDER BY FIELD(hor.diaSemana, 'Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'), hor.horaInicio`,
+      [idFicha],
+    );
+    return rows;
+  }
+
   public async SeleccionarHFA(): Promise<hfaData[]> {
     const { rows: hfa } = await conexion.execute("SELECT * FROM hfa");
     return hfa as hfaData[];
